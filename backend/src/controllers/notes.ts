@@ -14,6 +14,7 @@ export const getNotes: RequestHandler = async (req, res, next) => {
 
 export const getNote: RequestHandler = async (req, res, next) => {
   const { noteId } = req.params;
+
   try {
     if (!mongoose.isValidObjectId(noteId)) {
       throw createHttpError(400, "Invalid Note Id");
@@ -42,6 +43,7 @@ export const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknow
   next
 ) => {
   const { title, text } = req.body;
+
   try {
     if (!title) {
       throw createHttpError(400, "Note title is required");
@@ -49,6 +51,71 @@ export const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknow
 
     const newNote = await NoteModel.create({ title: title, text: text });
     res.status(201).json(newNote);
+  } catch (error) {
+    next(error);
+  }
+};
+
+interface UpdateNoteParams {
+  noteId: string;
+}
+
+interface UpdateNoteBody {
+  title?: string;
+  text?: string;
+}
+
+export const updateNote: RequestHandler<
+  UpdateNoteParams,
+  unknown,
+  UpdateNoteBody,
+  unknown
+> = async (req, res, next) => {
+  const { noteId } = req.params;
+  const newTitle = req.body.title;
+  const newText = req.body.text;
+
+  try {
+    if (!mongoose.isValidObjectId(noteId)) {
+      throw createHttpError(400, "Invalid Note Id");
+    }
+
+    if (!newTitle) {
+      throw createHttpError(400, "Note title is required");
+    }
+
+    const note = await NoteModel.findById(noteId);
+
+    if (!note) {
+      throw createHttpError(404, "Note not found");
+    }
+
+    note.title = newTitle;
+    note.text = newText;
+
+    const updatedNote = await note.save();
+    res.status(200).json(updatedNote);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteNote: RequestHandler = async (req, res, next) => {
+  const { noteId } = req.params;
+
+  try {
+    if (!mongoose.isValidObjectId(noteId)) {
+      throw createHttpError(400, "Invalid Note Id");
+    }
+
+    const note = await NoteModel.findById(noteId);
+
+    if (!note) {
+      throw createHttpError(404, "Note not found");
+    }
+
+    await note.deleteOne();
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
