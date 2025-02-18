@@ -1,0 +1,95 @@
+:root {
+  /* Color Set */
+  --clr-1: #8ecae6;
+  --clr-2: #219ebc;
+  --clr-3: #023047;
+  --clr-4: #ffb703;
+  --clr-5: #fb8500;
+}
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 20rem;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 1rem 3rem;
+  transition: 0.3s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.body::before,
+.body::after {
+  content: "";
+  position: absolute;
+  inset: -0.25rem;
+  transform: translateZ(-1rem);
+  background: rgba(0, 0, 0, 0.1);
+  filter: blur(0.5rem);
+  border-radius: inherit;
+  animation: animate 2s linear infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.body:hover::before,
+.body:hover::after {
+  background: conic-gradient(
+    from var(--angle),
+    var(--clr-1),
+    var(--clr-2),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5)
+  );
+  filter: blur(1rem);
+}
+
+@keyframes animate {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
+
+.body:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  z-index: 100;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.text {
+  font-size: 1.75rem;
+  font-family: var(--ff-secondary);
+  margin-bottom: 1rem;
+  white-space: pre-line;
+  overflow: hidden;
+  mask-image: linear-gradient(180deg, #000 90%, transparent);
+}
+
+.date {
+  border-top: 1px solid #ccc;
+  font-size: 0.8rem;
+}
+
+.date p {
+  margin: 0;
+}
