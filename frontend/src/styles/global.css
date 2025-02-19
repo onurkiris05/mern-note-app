@@ -1,8 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
+  /* FONTS */
   --ff-primary: "Roboto", sans-serif;
   --ff-secondary: "Caveat", serif;
+
+  /* Z-INDEX */
+  --z-above: 10;
+  --z-below: -10;
+
+  --z-base: 1;
+  --z-content: 50;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-modal: 500;
+  --z-tooltip: 1000;
 }
 
 * {
@@ -13,7 +25,7 @@
 }
 
 body {
-  background: #fff;
+  background: #eee;
   color: #000;
   font-family: var(--ff-primary);
 }

@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 600;
+  font-family: var(--ff-secondary);
+}
