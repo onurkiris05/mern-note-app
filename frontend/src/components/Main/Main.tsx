@@ -3,7 +3,7 @@ import styles from "./Main.module.css";
 import { NoteModel } from "../../models/note";
 import Note from "../Note/Note";
 import * as NotesApi from "../../network/notes_api";
-import AddNoteModal from "../AddNoteModal/AddNoteModal";
+import NoteModal from "../NoteModal/NoteModal";
 
 function Main() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -27,6 +27,19 @@ function Main() {
     setIsAddNoteModalActive(!isAddNoteModalActive);
   };
 
+  const handleNoteSave = (note: NoteModel) => {
+    setNotes([...notes, note]);
+    toggleAddNoteModal();
+  };
+
+  const handleNoteDelete = (noteId: string) => {
+    setNotes(notes.filter((note) => note._id !== noteId));
+  };
+
+  const handleNoteEdit = (note: NoteModel) => {
+    setNotes(notes.map((n) => (n._id === note._id ? note : n)));
+  };
+
   return (
     <main>
       <div className={styles.body}>
@@ -36,11 +49,18 @@ function Main() {
         <div className="container">
           <div className="row my-5">
             {notes.map((note) => (
-              <Note key={note._id} note={note} />
+              <Note
+                key={note._id}
+                note={note}
+                onDelete={handleNoteDelete}
+                onEdit={handleNoteEdit}
+              />
             ))}
           </div>
         </div>
-        {isAddNoteModalActive && <AddNoteModal onClose={toggleAddNoteModal} />}
+        {isAddNoteModalActive && (
+          <NoteModal onClose={toggleAddNoteModal} onNoteSave={handleNoteSave} />
+        )}
       </div>
     </main>
   );
