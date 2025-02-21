@@ -21,47 +21,26 @@
 }
 
 .btn_close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: -1rem;
   right: -1rem;
   width: 32px;
   height: 32px;
-  background: #fff;
-  border: none;
-  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1.5rem;
   font-size: 2rem;
-  border-radius: 50rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.btn_close:hover,
-.btn_close:active {
-  box-shadow: inset 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.btn_add {
+.btn_submit {
   display: flex;
   align-items: center;
   justify-content: center;
   width: clamp(10rem, 30%, 15rem);
   gap: 0.5rem;
-  background: #fff;
   margin-top: 0.5rem;
   font-size: 1.1rem;
   letter-spacing: 1px;
-  background: none;
-  border: none;
-  outline: none;
   padding: 1rem;
-  border-radius: 50rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.btn_add:hover,
-.btn_add:active {
-  box-shadow: inset 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }

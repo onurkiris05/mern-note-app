@@ -4,6 +4,7 @@ import formatDate from "../../utils/formatDate";
 import styles from "./Note.module.css";
 import * as NotesApi from "../../network/notes_api";
 import NoteModal from "../NoteModal/NoteModal";
+import Button from "../Button/Button";
 
 interface NoteProps {
   note: NoteModel;
@@ -44,24 +45,22 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
       <div className={`${styles.body} m-2`}>
-        <button
+        <Button
           className={styles.btn_delete}
           onClick={(e) => {
             handleOnDelete(note._id);
             e.stopPropagation();
           }}
-        >
-          <i className="bi bi-trash"></i>
-        </button>
-        <button
+          icon="bi bi-trash"
+        />
+        <Button
           className={styles.btn_edit}
           onClick={(e) => {
             toggleEditNoteModal();
             e.stopPropagation();
           }}
-        >
-          <i className="bi bi-pencil-square"></i>
-        </button>
+          icon="bi bi-pencil-square"
+        />
         <h3 className={styles.title}>{note.title}</h3>
         <p className={styles.text}>{note.text}</p>
         <div className={styles.date}>

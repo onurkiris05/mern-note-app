@@ -8,15 +8,5 @@
 .btn_add_note {
   align-self: flex-end;
   margin-right: 10%;
-  background: #fff;
-  border: none;
-  outline: none;
   padding: 1rem;
-  border-radius: 50rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.btn_add_note:hover,
-.btn_add_note:active {
-  box-shadow: inset 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }

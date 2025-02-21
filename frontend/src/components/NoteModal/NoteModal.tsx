@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import { NoteModel } from "../../models/note";
 import { NoteInput } from "../../network/notes_api";
 import * as NotesApi from "../../network/notes_api";
+import Button from "../Button/Button";
 
 interface NoteModalProps {
   onClose: () => void;
@@ -42,9 +43,7 @@ function NoteModal({ onClose, onNoteSave, initialNote, isEditMode = false }: Not
   return (
     <div className={styles.body}>
       <div className={styles.modal_container}>
-        <button className={styles.btn_close} onClick={onClose}>
-          <i className="bi bi-x-circle"></i>
-        </button>
+        <Button className={styles.btn_close} onClick={onClose} icon="bi bi-x-circle" />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Row className="mb-3">
             <Form.Group>
@@ -65,10 +64,12 @@ function NoteModal({ onClose, onNoteSave, initialNote, isEditMode = false }: Not
             </Form.Group>
           </Row>
           <Row className="d-flex justify-content-center">
-            <button className={styles.btn_add} type="submit" disabled={isSubmitting}>
-              <i className={`bi ${isEditMode ? "bi-pencil-square" : "bi-plus-circle"}`}></i>{" "}
-              {isEditMode ? "Edit Note" : "Add Note"}
-            </button>
+            <Button
+              className={styles.btn_submit}
+              icon={isEditMode ? "bi bi-pencil-square" : "bi bi-plus-circle"}
+              label={isEditMode ? "Edit Note" : "Add Note"}
+              disabled={isSubmitting}
+            />
           </Row>
         </Form>
       </div>

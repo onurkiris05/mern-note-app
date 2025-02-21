@@ -4,6 +4,7 @@ import { NoteModel } from "../../models/note";
 import Note from "../Note/Note";
 import * as NotesApi from "../../network/notes_api";
 import NoteModal from "../NoteModal/NoteModal";
+import Button from "../Button/Button";
 
 function Main() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -43,9 +44,12 @@ function Main() {
   return (
     <main>
       <div className={styles.body}>
-        <button className={styles.btn_add_note} onClick={toggleAddNoteModal}>
-          <i className="bi bi-plus-circle"></i> Add Note
-        </button>
+        <Button
+          className={styles.btn_add_note}
+          icon="bi bi-plus-circle"
+          label="Add Note"
+          onClick={toggleAddNoteModal}
+        />
         <div className="container">
           <div className="row my-5">
             {notes.map((note) => (
