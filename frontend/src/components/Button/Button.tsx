@@ -6,12 +6,12 @@ interface ButtonProps {
   icon?: string;
   label?: string;
   className?: string;
-  disabled?: boolean;
+  [key: string]: any;
 }
 
-function Button({ onClick, icon, label, className, disabled }: ButtonProps) {
+function Button({ onClick, icon, label, className, ...props }: ButtonProps) {
   return (
-    <button className={`${styles.button} ${className}`} onClick={onClick} disabled={disabled}>
+    <button className={`${styles.button} ${className}`} onClick={onClick} {...props}>
       {icon && <i className={icon}></i>} {label}
     </button>
   );
