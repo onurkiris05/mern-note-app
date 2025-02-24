@@ -51,16 +51,18 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
             handleOnDelete(note._id);
             e.stopPropagation();
           }}
-          icon="bi bi-trash"
-        />
+        >
+          <i className="bi bi-trash"></i>
+        </Button>
         <Button
           className={styles.btn_edit}
           onClick={(e) => {
             toggleEditNoteModal();
             e.stopPropagation();
           }}
-          icon="bi bi-pencil-square"
-        />
+        >
+          <i className="bi bi-pencil-square"></i>
+        </Button>
         <h3 className={styles.title}>{note.title}</h3>
         <p className={styles.text}>{note.text}</p>
         <div className={styles.date}>

@@ -5,6 +5,12 @@
   padding: 2rem 4rem;
 }
 
+.body p {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-right: 1rem;
+}
+
 .title {
   font-size: 4rem;
   font-weight: 600;

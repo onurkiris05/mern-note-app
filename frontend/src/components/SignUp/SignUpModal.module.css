@@ -1,0 +1,17 @@
+.modal {
+  width: clamp(20rem, 50%, 25rem) !important;
+}
+
+.btn_submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #fff;
+  background: royalblue;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 1rem;
+}

@@ -1,20 +1,23 @@
 import { ReactElement, ReactNode } from "react";
 import { Form, Row } from "react-bootstrap";
 import Button from "../Button/Button";
-import styles from "./Modal.module.css";
+import styles from "./FormModal.module.css";
 
 interface ModalProps {
   onClose: () => void;
   onSubmit: () => void;
+  className?: string;
   fields: ReactNode[];
   submitButton: ReactElement<typeof Button>;
 }
 
-function Modal({ onClose, onSubmit, fields, submitButton }: ModalProps) {
+function FormModal({ onClose, onSubmit, className, fields, submitButton }: ModalProps) {
   return (
     <div className={styles.body}>
-      <div className={styles.modal_container}>
-        <Button className={styles.btn_close} onClick={onClose} icon="bi bi-x-circle" />
+      <div className={`${styles.modal_container} ${className}`}>
+        <Button className={styles.btn_close} onClick={onClose}>
+          <i className="bi bi-x-circle"></i>
+        </Button>
         <Form onSubmit={onSubmit}>
           {fields.map((field, index) => (
             <Row key={index} className="mb-3">
@@ -28,4 +31,4 @@ function Modal({ onClose, onSubmit, fields, submitButton }: ModalProps) {
   );
 }
 
-export default Modal;
+export default FormModal;

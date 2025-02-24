@@ -6,12 +6,15 @@ import * as NotesApi from "../../network/notes_api";
 import NoteModal from "../NoteModal/NoteModal";
 import Button from "../Button/Button";
 import { Spinner } from "react-bootstrap";
+import { useAuthStore } from "../../stores/authStore";
 
 function Main() {
   const [notesLoading, setNotesLoading] = useState(true);
   const [showNotesLoadingError, setShowNotesLoadingError] = useState(false);
   const [notes, setNotes] = useState<NoteModel[]>([]);
   const [isAddNoteModalActive, setIsAddNoteModalActive] = useState(false);
+
+  const user = useAuthStore((state) => state.user);
 
   const loadNotes = async () => {
     try {
@@ -60,19 +63,22 @@ function Main() {
   return (
     <main>
       <div className={styles.body}>
-        <Button
-          className={styles.btn_add_note}
-          icon="bi bi-plus-circle"
-          label="Add Note"
-          onClick={toggleAddNoteModal}
-        />
-        <div className="container d-flex flex-column align-items-center justify-content-center">
-          {notesLoading && <Spinner animation="border" variant="primary" />}
-          {showNotesLoadingError && <p>Unable to load notes!</p>}
-          <div className="row my-5">{!notesLoading && !showNotesLoadingError && noteGrid}</div>
-        </div>
-        {isAddNoteModalActive && (
-          <NoteModal onClose={toggleAddNoteModal} onNoteSave={handleNoteSave} />
+        {user ? (
+          <>
+            <Button className={styles.btn_add_note} onClick={toggleAddNoteModal}>
+              <i className="bi bi-plus-circle"></i> Add Note
+            </Button>
+            <div className="container d-flex flex-column align-items-center justify-content-center">
+              {notesLoading && <Spinner animation="border" variant="primary" />}
+              {showNotesLoadingError && <p>Unable to load notes!</p>}
+              <div className="row my-5">{!notesLoading && !showNotesLoadingError && noteGrid}</div>
+            </div>
+            {isAddNoteModalActive && (
+              <NoteModal onClose={toggleAddNoteModal} onNoteSave={handleNoteSave} />
+            )}
+          </>
+        ) : (
+          <h4>Please Log In to View Notes</h4>
         )}
       </div>
     </main>

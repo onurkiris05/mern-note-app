@@ -1,18 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styles from "./Button.module.css";
 
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  icon?: string;
-  label?: string;
   className?: string;
+  children?: ReactNode;
   [key: string]: any;
 }
 
-function Button({ onClick, icon, label, className, ...props }: ButtonProps) {
+function Button({ onClick, className, children, ...props }: ButtonProps) {
   return (
     <button className={`${styles.button} ${className}`} onClick={onClick} {...props}>
-      {icon && <i className={icon}></i>} {label}
+      {children}
     </button>
   );
 }

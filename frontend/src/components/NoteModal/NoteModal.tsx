@@ -5,7 +5,7 @@ import { NoteInput } from "../../network/notes_api";
 import * as NotesApi from "../../network/notes_api";
 import Button from "../Button/Button";
 import TextInputField from "../Form/TextInputField";
-import Modal from "../Modal/Modal";
+import FormModal from "../FormModal/FormModal";
 
 interface NoteModalProps {
   onClose: () => void;
@@ -41,7 +41,7 @@ function NoteModal({ onClose, onNoteSave, initialNote, isEditMode = false }: Not
   }
 
   return (
-    <Modal
+    <FormModal
       onClose={onClose}
       onSubmit={handleSubmit(onSubmit)}
       fields={[
@@ -64,12 +64,14 @@ function NoteModal({ onClose, onNoteSave, initialNote, isEditMode = false }: Not
         />,
       ]}
       submitButton={
-        <Button
-          className={styles.btn_submit}
-          icon={isEditMode ? "bi bi-pencil-square" : "bi bi-plus-circle"}
-          label={isEditMode ? "Edit Note" : "Add Note"}
-          disabled={isSubmitting}
-        />
+        <Button className={styles.btn_submit} disabled={isSubmitting}>
+          {isEditMode ? (
+            <i className="bi bi-pencil-square"></i>
+          ) : (
+            <i className="bi bi-plus-circle"></i>
+          )}
+          {isEditMode ? "Edit Note" : "Add Note"}
+        </Button>
       }
     />
   );
