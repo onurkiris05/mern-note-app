@@ -1,0 +1,21 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn_add_note {
+  align-self: flex-end;
+  margin-right: 5rem;
+  padding: 1rem;
+}
+
+.note_grid_row {
+  width: 100%;
+}
+
+h4 {
+  font-weight: 400;
+  color: #333;
+}

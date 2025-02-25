@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 5rem;
   padding: 2rem 4rem;
+  background: linear-gradient(90deg, #8ecae6 0%, #ffb703 100%);
 }
 
 .body p {
@@ -15,4 +17,16 @@
   font-size: 4rem;
   font-weight: 600;
   font-family: var(--ff-secondary);
+}
+
+.body a {
+  color: royalblue;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: max(4rem, 10vw);
 }

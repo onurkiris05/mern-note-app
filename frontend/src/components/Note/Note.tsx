@@ -3,7 +3,7 @@ import { NoteModel } from "../../models/note";
 import formatDate from "../../utils/formatDate";
 import styles from "./Note.module.css";
 import * as NotesApi from "../../network/notes_api";
-import NoteModal from "../NoteModal/NoteModal";
+import NoteModal from "./NoteModal";
 import Button from "../Button/Button";
 
 interface NoteProps {

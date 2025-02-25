@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: #333;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ff4d4f;
+}
+
+.message {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.homeButton {
+  background-color: #007bff;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
+
+.homeButton * {
+  text-decoration: none;
+  color: #fff;
+}

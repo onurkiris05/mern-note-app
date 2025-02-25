@@ -1,0 +1,9 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: max(2rem, 5vw);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}

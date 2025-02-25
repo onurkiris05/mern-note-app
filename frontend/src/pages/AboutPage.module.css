@@ -1,0 +1,57 @@
+.container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.features {
+  margin-bottom: 2rem;
+}
+
+.features h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.featureList {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.featureList li {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.aboutApp {
+  margin-bottom: 2rem;
+}
+
+.aboutApp h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.contact a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
