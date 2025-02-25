@@ -7,6 +7,7 @@ import createHttpError, { isHttpError } from "http-errors";
 import session from "express-session";
 import env from "./utils/validateEnv";
 import MongoStore from "connect-mongo";
+import { requiresAuth } from "./middlewares/auth";
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use(
   })
 );
 
-app.use("/api/notes", notesRoutes);
+app.use("/api/notes", requiresAuth, notesRoutes);
 app.use("/api/users", usersRoutes);
 
 app.use((req, res, next) => {

@@ -14,14 +14,18 @@ interface NoteProps {
 
 function Note({ note, onDelete, onEdit }: NoteProps) {
   const [isEditNoteModalActive, setIsEditNoteModalActive] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleOnDelete(noteId: string) {
     try {
+      setIsSubmitting(true);
       await NotesApi.deleteNote(noteId);
       onDelete(noteId);
     } catch (error) {
       console.error(error);
       alert(error);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -51,6 +55,7 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
             handleOnDelete(note._id);
             e.stopPropagation();
           }}
+          disabled={isSubmitting}
         >
           <i className="bi bi-trash"></i>
         </Button>

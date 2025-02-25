@@ -31,8 +31,8 @@ function Main() {
   };
 
   useEffect(() => {
-    loadNotes();
-  }, []);
+    user ? loadNotes() : setNotes([]);
+  }, [user]);
 
   const toggleAddNoteModal = () => {
     setIsAddNoteModalActive(!isAddNoteModalActive);
@@ -71,7 +71,9 @@ function Main() {
             <div className="container d-flex flex-column align-items-center justify-content-center">
               {notesLoading && <Spinner animation="border" variant="primary" />}
               {showNotesLoadingError && <p>Unable to load notes!</p>}
-              <div className="row my-5">{!notesLoading && !showNotesLoadingError && noteGrid}</div>
+              <div className={`row my-4 ${styles.note_grid_row}`}>
+                {!notesLoading && !showNotesLoadingError && noteGrid}
+              </div>
             </div>
             {isAddNoteModalActive && (
               <NoteModal onClose={toggleAddNoteModal} onNoteSave={handleNoteSave} />
