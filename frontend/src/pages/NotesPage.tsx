@@ -64,9 +64,11 @@ function NotesPage() {
     <div className={styles.body}>
       {user ? (
         <>
-          <Button className={styles.btn_add_note} onClick={toggleAddNoteModal}>
-            <i className="bi bi-plus-circle"></i> Add Note
-          </Button>
+          <div className="container d-flex justify-content-center justify-content-sm-end">
+            <Button className={` ${styles.btn_add_note}`} onClick={toggleAddNoteModal}>
+              <i className="bi bi-plus-circle"></i> Add Note
+            </Button>
+          </div>
           <div className="container d-flex flex-column align-items-center justify-content-center">
             {notesLoading && <Spinner animation="border" variant="primary" />}
             {showNotesLoadingError && <p>Unable to load notes!</p>}

@@ -15,6 +15,10 @@
   --z-dropdown: 200;
   --z-modal: 500;
   --z-tooltip: 1000;
+
+  /* COLORS */
+  --clr-primary: #023047;
+  --clr-secondary: #ffb703;
 }
 
 * {

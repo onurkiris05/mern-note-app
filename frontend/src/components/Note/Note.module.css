@@ -43,19 +43,6 @@
   inherits: false;
 }
 
-.body:hover::before,
-.body:hover::after {
-  background: conic-gradient(
-    from var(--angle),
-    var(--clr-1),
-    var(--clr-2),
-    var(--clr-3),
-    var(--clr-4),
-    var(--clr-5)
-  );
-  filter: blur(1rem);
-}
-
 @keyframes animate {
   from {
     --angle: 0deg;
@@ -65,14 +52,29 @@
   }
 }
 
-.body:hover {
-  position: absolute;
-  max-width: 20rem;
-  min-height: 20rem;
-  height: auto;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
-  z-index: calc(var(--z-content) + var(--z-above));
+@media (min-width: 576px) {
+  .body:hover::before,
+  .body:hover::after {
+    background: conic-gradient(
+      from var(--angle),
+      var(--clr-1),
+      var(--clr-2),
+      var(--clr-3),
+      var(--clr-4),
+      var(--clr-5)
+    );
+    filter: blur(1rem);
+  }
+
+  .body:hover {
+    position: absolute;
+    max-width: 20rem;
+    min-height: 20rem;
+    height: auto;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    z-index: calc(var(--z-content) + var(--z-above));
+  }
 }
 
 .title {
@@ -135,4 +137,12 @@
 .body:hover .btn_delete {
   visibility: visible;
   opacity: 1;
+}
+
+@media (max-width: 576px) {
+  .btn_edit,
+  .btn_delete {
+    visibility: visible;
+    opacity: 1;
+  }
 }

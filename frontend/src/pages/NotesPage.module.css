@@ -1,13 +1,10 @@
 .body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .btn_add_note {
-  align-self: flex-end;
-  margin-right: 5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--clr-primary);
   padding: 1rem;
 }
 
@@ -16,6 +13,14 @@
 }
 
 h4 {
+  text-align: center;
   font-weight: 400;
   color: #333;
+}
+
+@media (max-width: 576px) {
+  .btn_add_note {
+    align-self: unset;
+    margin-right: 0;
+  }
 }

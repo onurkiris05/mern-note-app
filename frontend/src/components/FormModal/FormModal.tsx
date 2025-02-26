@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import { Form, Row } from "react-bootstrap";
 import Button from "../Button/Button";
 import styles from "./FormModal.module.css";
@@ -12,6 +12,13 @@ interface ModalProps {
 }
 
 function FormModal({ onClose, onSubmit, className, fields, submitButton }: ModalProps) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className={styles.body}>
       <div className={`${styles.modal_container} ${className}`}>

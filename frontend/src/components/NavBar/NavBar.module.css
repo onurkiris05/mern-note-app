@@ -1,23 +1,27 @@
-.body {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  /* gap: max(2rem, 3vw); */
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 1px;
+.noPosition {
+  position: unset !important;
 }
 
-.body a {
-  padding-inline: 1rem;
-  border-right: 1px solid royalblue;
+.title {
+  font-size: 3rem;
+  color: var(--clr-primary);
+  font-weight: 600;
+  font-family: var(--ff-secondary);
   transition: 0.2s;
 }
 
-.body a:last-child {
-  border-right: none;
+.navbarBody {
+  background: linear-gradient(90deg, #8ecae6 0%, #ffb703 100%);
 }
 
-.body a:hover {
-  color: #fff;
+.navBody a {
+  color: var(--clr-primary);
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: 0.2s;
+}
+
+.title:hover,
+.navBody a:hover {
+  color: var(--clr-secondary);
 }
