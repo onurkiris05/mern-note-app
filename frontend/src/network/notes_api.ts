@@ -1,16 +1,5 @@
 import { NoteModel } from "../models/note";
-
-async function fetchData(input: RequestInfo, init?: RequestInit) {
-  const response = await fetch(input, init);
-
-  if (response.ok) {
-    return response;
-  } else {
-    const errorBody = await response.json();
-    const errorMessage = errorBody.error;
-    throw Error(errorMessage);
-  }
-}
+import { fetchData } from "./fetchData";
 
 export async function fetchNotes(): Promise<NoteModel[]> {
   const response = await fetchData("/api/notes", { method: "GET" });

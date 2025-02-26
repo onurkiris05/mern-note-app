@@ -6,12 +6,16 @@ import FormModal from "../FormModal/FormModal";
 import Button from "../Button/Button";
 import TextInputField from "../Form/TextInputField";
 import { useAuthStore } from "../../stores/authStore";
+import { useState } from "react";
+import { ConflictError } from "../../errors/http_errors";
+import { Alert } from "react-bootstrap";
 
 interface SignUpModalProps {
   onClose: () => void;
 }
 
 function SignUpModal({ onClose }: SignUpModalProps) {
+  const [errorText, setErrorText] = useState<string | null>(null);
   const setUser = useAuthStore((state) => state.setUser);
 
   const {
@@ -25,8 +29,12 @@ function SignUpModal({ onClose }: SignUpModalProps) {
       const userResponse = await UsersApi.signUp(input);
       setUser(userResponse);
     } catch (error) {
+      if (error instanceof ConflictError) {
+        setErrorText(error.message);
+      } else {
+        alert(error);
+      }
       console.error(error);
-      alert(error);
     }
   }
 
@@ -36,6 +44,7 @@ function SignUpModal({ onClose }: SignUpModalProps) {
       onClose={onClose}
       onSubmit={handleSubmit(onSubmit)}
       fields={[
+        errorText && <Alert variant="danger">{errorText}</Alert>,
         <TextInputField
           name="username"
           label="Username"
