@@ -48,30 +48,32 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
 
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
-      <div className={`${styles.body} m-2`}>
-        <Button
-          className={styles.btn_delete}
-          onClick={(e) => {
-            handleOnDelete(note._id);
-            e.stopPropagation();
-          }}
-          disabled={isSubmitting}
-        >
-          <i className="bi bi-trash"></i>
-        </Button>
-        <Button
-          className={styles.btn_edit}
-          onClick={(e) => {
-            toggleEditNoteModal();
-            e.stopPropagation();
-          }}
-        >
-          <i className="bi bi-pencil-square"></i>
-        </Button>
-        <h3 className={styles.title}>{note.title}</h3>
-        <p className={styles.text}>{note.text}</p>
-        <div className={styles.date}>
-          <p className="text-muted">{getDate()}</p>
+      <div className={`${styles.container} m-2`}>
+        <div className={styles.body}>
+          <Button
+            className={styles.btn_delete}
+            onClick={(e) => {
+              handleOnDelete(note._id);
+              e.stopPropagation();
+            }}
+            disabled={isSubmitting}
+          >
+            <i className="bi bi-trash"></i>
+          </Button>
+          <Button
+            className={styles.btn_edit}
+            onClick={(e) => {
+              toggleEditNoteModal();
+              e.stopPropagation();
+            }}
+          >
+            <i className="bi bi-pencil-square"></i>
+          </Button>
+          <h3 className={styles.title}>{note.title}</h3>
+          <p className={styles.text}>{note.text}</p>
+          <div className={styles.date}>
+            <p className="text-muted">{getDate()}</p>
+          </div>
         </div>
       </div>
       {isEditNoteModalActive && (

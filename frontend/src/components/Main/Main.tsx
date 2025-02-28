@@ -7,7 +7,7 @@ import AboutPage from "../../pages/AboutPage";
 
 function Main() {
   return (
-    <main className={`${styles.body}`}>
+    <main className={styles.main}>
       <Routes>
         <Route path="/" element={<NotesPage />} />
         <Route path="/about" element={<AboutPage />} />

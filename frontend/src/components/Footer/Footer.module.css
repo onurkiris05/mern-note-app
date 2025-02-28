@@ -1,6 +1,9 @@
-.body {
+.footer {
   padding-block: 1rem;
-  border-top: 1px solid #ccc;
+  background: linear-gradient(90deg, #8ecae6 0%, #ffb703 100%);
+}
+
+.body {
 }
 
 .body p {

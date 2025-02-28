@@ -81,7 +81,14 @@ function NotesPage() {
           )}
         </>
       ) : (
-        <h4>Please Log In to View Notes</h4>
+        <div className={styles.loginMessage}>
+          <h4>Please Log In to View Notes</h4>
+          <p>
+            Want to test the app? Signup <strong>or</strong> Try demo account:{" "}
+            <strong>Username:</strong> test {""}
+            <strong>Password:</strong> 1234
+          </p>
+        </div>
       )}
     </div>
   );

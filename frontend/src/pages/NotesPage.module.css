@@ -12,10 +12,15 @@
   width: 100%;
 }
 
-h4 {
+.loginMessage h4 {
   text-align: center;
+  text-transform: uppercase;
   font-weight: 400;
   color: #333;
+}
+
+.loginMessage p {
+  text-align: center;
 }
 
 @media (max-width: 576px) {

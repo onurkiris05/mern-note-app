@@ -8,11 +8,20 @@ import session from "express-session";
 import env from "./utils/validateEnv";
 import MongoStore from "connect-mongo";
 import { requiresAuth } from "./middlewares/auth";
+import cors from "cors";
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+
+const corsOptions: cors.CorsOptions = {
+  origin: env.FRONTEND_URL,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 
 app.use(
   session({
@@ -21,6 +30,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 60 * 60 * 1000,
+      sameSite: "lax",
     },
     rolling: true,
     store: MongoStore.create({
