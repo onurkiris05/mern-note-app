@@ -7,6 +7,8 @@ import { NoteModel } from "../models/note";
 import * as NotesApi from "../network/notes_api";
 import { useAuthStore } from "../stores/authStore";
 import Note from "../components/Note/Note";
+import { motion } from "framer-motion";
+import * as Animations from "../utils/animations";
 
 function NotesPage() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -54,7 +56,13 @@ function NotesPage() {
   const noteGrid =
     notes.length > 0 ? (
       notes.map((note) => (
-        <Note key={note._id} note={note} onDelete={handleNoteDelete} onEdit={handleNoteEdit} />
+        <motion.div
+          key={note._id}
+          className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center"
+          variants={Animations.fadeInUp(0.2, 40)}
+        >
+          <Note note={note} onDelete={handleNoteDelete} onEdit={handleNoteEdit} />
+        </motion.div>
       ))
     ) : (
       <p>No notes found</p>
@@ -72,9 +80,16 @@ function NotesPage() {
           <div className="container d-flex flex-column align-items-center justify-content-center">
             {notesLoading && <Spinner animation="border" variant="primary" />}
             {showNotesLoadingError && <p>Unable to load notes!</p>}
-            <div className={`row my-4 ${styles.note_grid_row}`}>
-              {!notesLoading && !showNotesLoadingError && noteGrid}
-            </div>
+            {!notesLoading && !showNotesLoadingError && (
+              <motion.div
+                className={`row my-4 ${styles.note_grid_row}`}
+                variants={Animations.staggerContainer(0.1)}
+                initial="hidden"
+                animate="show"
+              >
+                {noteGrid}
+              </motion.div>
+            )}
           </div>
           {isAddNoteModalActive && (
             <NoteModal onClose={toggleAddNoteModal} onNoteSave={handleNoteSave} />

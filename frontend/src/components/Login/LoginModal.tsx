@@ -9,6 +9,7 @@ import { useAuthStore } from "../../stores/authStore";
 import { UnauthorizedError } from "../../errors/http_errors";
 import { useState } from "react";
 import { Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -17,6 +18,7 @@ interface LoginModalProps {
 function LoginModal({ onClose }: LoginModalProps) {
   const [errorText, setErrorText] = useState<string | null>(null);
   const setUser = useAuthStore((state) => state.setUser);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -28,6 +30,7 @@ function LoginModal({ onClose }: LoginModalProps) {
     try {
       const userResponse = await UsersApi.login(input);
       setUser(userResponse);
+      navigate("/");
     } catch (error) {
       if (error instanceof UnauthorizedError) {
         setErrorText(error.message);

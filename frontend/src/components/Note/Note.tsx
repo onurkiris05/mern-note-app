@@ -47,7 +47,7 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
   };
 
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+    <>
       <div className={`${styles.container} m-2`}>
         <div className={styles.body}>
           <Button
@@ -84,7 +84,7 @@ function Note({ note, onDelete, onEdit }: NoteProps) {
           initialNote={note}
         />
       )}
-    </div>
+    </>
   );
 }
 
