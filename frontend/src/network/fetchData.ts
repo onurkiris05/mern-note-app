@@ -5,7 +5,13 @@ export async function fetchData(input: RequestInfo, init?: RequestInit) {
     credentials: "include",
     ...init,
   };
+  console.log("Fetch Request:", `${process.env.REACT_APP_BACKEND_URL}${input}`);
+  console.log("Fetch Options:", options);
+
   const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}` + input, options);
+
+  console.log("Fetch Response:", response);
+  console.log("Response Headers:", response.headers);
 
   if (response.ok) {
     return response;

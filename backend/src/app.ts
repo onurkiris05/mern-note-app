@@ -23,6 +23,18 @@ const corsOptions: cors.CorsOptions = {
 };
 app.use(cors(corsOptions));
 
+// Middleware to log CORS headers
+app.use((req, res, next) => {
+  console.log("CORS Headers:");
+  console.log("Origin:", req.headers.origin);
+  console.log("Access-Control-Allow-Origin:", res.getHeader("Access-Control-Allow-Origin"));
+  console.log(
+    "Access-Control-Allow-Credentials:",
+    res.getHeader("Access-Control-Allow-Credentials")
+  );
+  next();
+});
+
 app.use(
   session({
     secret: env.SESSION_SECRET,
@@ -39,6 +51,13 @@ app.use(
     }),
   })
 );
+
+// Middleware to log session data
+app.use((req, res, next) => {
+  console.log("Session ID:", req.sessionID);
+  console.log("Session Data:", req.session);
+  next();
+});
 
 app.use("/api/notes", requiresAuth, notesRoutes);
 app.use("/api/users", usersRoutes);

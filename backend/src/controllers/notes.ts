@@ -8,6 +8,7 @@ export const getNotes: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
 
   try {
+    console.log("getNotes Controller - Session Data:", req.session);
     assertIsDefined(authenticatedUserId);
 
     const notes = await NoteModel.find({ userId: authenticatedUserId });
@@ -22,6 +23,7 @@ export const getNote: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
 
   try {
+    console.log("getNote Controller - Session Data:", req.session);
     assertIsDefined(authenticatedUserId);
 
     if (!mongoose.isValidObjectId(noteId)) {
@@ -58,6 +60,7 @@ export const createNote: RequestHandler<unknown, unknown, CreateNoteBody, unknow
   const authenticatedUserId = req.session.userId;
 
   try {
+    console.log("createNote Controller - Session Data:", req.session);
     assertIsDefined(authenticatedUserId);
 
     if (!title) {
@@ -96,6 +99,7 @@ export const updateNote: RequestHandler<
   const authenticatedUserId = req.session.userId;
 
   try {
+    console.log("updateNote Controller - Session Data:", req.session);
     assertIsDefined(authenticatedUserId);
 
     if (!mongoose.isValidObjectId(noteId)) {
@@ -131,6 +135,7 @@ export const deleteNote: RequestHandler = async (req, res, next) => {
   const authenticatedUserId = req.session.userId;
 
   try {
+    console.log("deleteNote Controller - Session Data:", req.session);
     assertIsDefined(authenticatedUserId);
 
     if (!mongoose.isValidObjectId(noteId)) {

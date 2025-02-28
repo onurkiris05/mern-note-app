@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 
 export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
   try {
+    console.log("getAuthenticatedUser Controller - Session Data:", req.session);
     const user = await UserModel.findById(req.session.userId).select("+email");
     res.status(200).json(user);
   } catch (error) {
@@ -27,6 +28,7 @@ export const signUp: RequestHandler<unknown, unknown, SignUpBody, unknown> = asy
   const passwordRaw = req.body.password;
 
   try {
+    console.log("signUp Controller - Session Data:", req.session);
     if (!username || !email || !passwordRaw) {
       throw createHttpError(400, "All fields are required");
     }
@@ -69,6 +71,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
   const { username, password } = req.body;
 
   try {
+    console.log("login Controller - Session Data:", req.session);
     if (!username || !password) {
       throw createHttpError(400, "All fields are required");
     }
@@ -93,6 +96,7 @@ export const login: RequestHandler<unknown, unknown, LoginBody, unknown> = async
 };
 
 export const logout: RequestHandler = (req, res, next) => {
+  console.log("logout Controller - Session Data:", req.session);
   req.session.destroy((error) => {
     if (error) {
       next(error);
